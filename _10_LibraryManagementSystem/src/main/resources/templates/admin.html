@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+}
+
+h1{
+    color:white;
+    margin-bottom:40px;
+    font-size:40px;
+}
+
+.cards{
+    display:flex;
+    gap:40px;
+}
+
+.card{
+    width:260px;
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.icon{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#333;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:12px 30px;
+    border-radius:8px;
+    color:white;
+    background:#007bff;
+    font-size:18px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#0056b3;
+}
+
+.report{
+    background:#28a745;
+}
+
+.report:hover{
+    background:#1e7e34;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Admin Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">➕📖</div>
+            <h2>Add Book</h2>
+            <a th:href="@{/addBook}" class="btn">Add Book</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📋</div>
+            <h2>Show Report</h2>
+            <a th:href="@{/report}" class="btn report">View Report</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

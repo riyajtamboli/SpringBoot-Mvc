@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Report</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+    padding:40px;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+    color:#333;
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#007bff;
+    color:white;
+    padding:15px;
+}
+
+table td{
+    text-align:center;
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:nth-child(even){
+    background:#f9f9f9;
+}
+
+table tr:hover{
+    background:#eaf4ff;
+}
+
+.action{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.edit-btn{
+    text-decoration:none;
+    background:#ffc107;
+    color:black;
+    padding:8px 15px;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.edit-btn:hover{
+    background:#e0a800;
+}
+
+.delete-btn{
+    text-decoration:none;
+    background:#dc3545;
+    color:white;
+    padding:8px 15px;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.delete-btn:hover{
+    background:#b02a37;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:10px 20px;
+    text-decoration:none;
+    background:#28a745;
+    color:white;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    background:#1e7e34;
+}
+
+.empty{
+    text-align:center;
+    color:red;
+    font-size:20px;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📚 Book Report</h1>
+
+    <table th:if="${!#lists.isEmpty(books)}">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr th:each="book : ${books}">
+
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.author}"></td>
+
+                <td>
+                    <div class="action">
+
+                        <a th:href="@{/edit(id=${book.id})}"
+                           class="edit-btn">
+                           Edit
+                        </a>
+
+                        <a th:href="@{/delete(id=${book.id})}"
+                           class="delete-btn"
+                           onclick="return confirm('Are you sure you want to delete this book?')">
+                           Delete
+                        </a>
+
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div class="empty" th:if="${#lists.isEmpty(books)}">
+        No Books Available
+    </div>
+
+    <a th:href="@{/admin/login}" class="back-btn">
+        ⬅ Back
+    </a>
+
+</div>
+
+</body>
+</html>
